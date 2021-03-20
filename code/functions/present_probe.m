@@ -39,13 +39,21 @@ my_optimal_fixationpoint(win, P.screen.cx, P.screen.cy, ...
     P.display.fix_size, P.display.fix_color, ...
     P.display.bg, P.screen.pixperdeg)
 
+
+% Show the original target circle too for comparison, eg. for debugging.
+% Screen('FillRect', win, T.colors',         rects);
+
+
 % Draw target and foil probe.
 if T.is_foil_on_top == 1
-    Screen('FillOval', win, [T.foil_color; T.colors(T.itest,:)]',     [top_rect; bottom_rect]');
+    %     Screen('FillOval', win, [T.foil_color; T.colors(T.itest,:)]',     [top_rect; bottom_rect]');
+    Screen('FillArc', win, T.foil_color',        rects(:,T.itest), 270, 180)
+    Screen('FillArc', win, T.colors(T.itest,:)', rects(:,T.itest),  90, 180)
 else
-    Screen('FillOval', win, [T.colors(T.itest,:); T.foil_color]',     [top_rect; bottom_rect]');
+    %     Screen('FillOval', win, [T.colors(T.itest,:); T.foil_color]',     [top_rect; bottom_rect]');
+    Screen('FillArc', win, T.foil_color',        rects(:,T.itest), 90, 180)
+    Screen('FillArc', win, T.colors(T.itest,:)', rects(:,T.itest),  270, 180)
 end
-% Screen('FillOval', win, T.colors',         rects);
 
 % Do it!
 Screen('DrawingFinished', win);

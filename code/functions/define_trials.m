@@ -16,7 +16,7 @@ for irepeat = 1:P.paradigm.n_trials
         T(itrial).setsize = this_setsize;
         
         rad_step = (2*pi) / this_setsize;
-        rad_jitter = 0.33 * rad_step;
+        rad_jitter = 0.25 * rad_step;
         
         
         % Get a random location on the color wheel as the "starting color" for

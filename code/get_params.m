@@ -67,10 +67,10 @@ P.screen.ifi_buffer = 0.5;
 %  ------------------------------------------------------------------------
 P.paradigm.doFeedback = 1;
 P.paradigm.Feedbackthick = 0.1; %degree
-P.paradigm.setsizes = [3 6];% 4 6 8];
-P.paradigm.breakafter = 100; %break after n trials
+P.paradigm.setsizes = [4 6 8];% 4 6 8];
+P.paradigm.breakafter = 20; %break after n trials
 P.paradigm.n_training_trials = 15;% how many training trials?
-P.paradigm.n_trials = 20; % n trials per set size
+P.paradigm.n_trials = 40; % n trials per set size
 P.paradigm.jitter_colors = 1;
 
 P.paradigm.show_stimuli = 1; % Set to zero to skip stimulus presentation for testing.
@@ -93,17 +93,17 @@ P.colors.lightness = 54;
 P.colors.a         = 18;
 P.colors.b         = -8;
 P.colors.radius    = 59;
-P.colors.degreeSeparation = 15;
+% P.colors.degreeSeparation = 15;
 
 
 %% ------------------------------------------------------------------------
 %  Parameters of the display geometry.
 %  ------------------------------------------------------------------------
-P.display.bg = P.screen.white;%(P.screen.white + P.screen.black) /2;
+P.display.bg = P.screen.black;%(P.screen.white + P.screen.black) ./2;
 P.display.item_diam = 2;
 P.display.item_ecce = 4;
 P.display.fix_size = 0.5;
-P.display.fix_color = [0 0 0];
+P.display.fix_color = (P.screen.white + P.screen.black) ./4;
 
 
 

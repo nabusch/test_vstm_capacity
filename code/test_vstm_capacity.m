@@ -6,7 +6,7 @@ addpath('./functions');
 %% ----------------------------------------------------------------
 % Unify KbNames, normalize color range, Assert openGL
 %--------------------------------------------------------------------------
-PsychDefaultSetup(2);
+PsychDefaultSetup(1);
 
 
 %% ----------------------------------------------------------------
@@ -48,7 +48,7 @@ INFO = define_trials(INFO);
 %% ----------------------------------------------------------------
 % Open & configure display and set priority.
 % -------------------------------------------------------------------------
-PsychImaging('PrepareConfiguration');
+% PsychImaging('PrepareConfiguration');
 Screen('Preference', 'SkipSyncTests', INFO.P.setup.skipsync);
 
 if isunix
@@ -114,6 +114,16 @@ INFO.tStart = {datestr(clock)};
 
 for trial_idx = 1:length(INFO.T)
     
+    %-------------------------------------------------
+    % Present a break if necessary.
+    %-------------------------------------------------
+    if ~P.paradigm.get_response == 0
+        if(mod(trial_idx, INFO.P.paradigm.breakafter) == 1 || trial_idx == 1)
+            PresentPause(win, INFO, trial_idx)
+        end
+    end
+    
+    
     % --------------------------------------------------------------------
     % Present stimuli if desired.
     % --------------------------------------------------------------------
@@ -139,15 +149,6 @@ for trial_idx = 1:length(INFO.T)
     end
 end
 
-%%
-correct = [INFO.T.correct];
-ss = [INFO.T.setsize];
-
-for i = 1:length(INFO.P.paradigm.setsizes)
-    n = INFO.P.paradigm.setsizes(i);
-    p = sum(correct & ss==n) / sum(ss==n); 
-    K(i) = n * (2*p - 1)
-end
 %% ----------------------------------------------------------------
 % After last trial, close everything and exit.
 % -------------------------------------------------------------------------
