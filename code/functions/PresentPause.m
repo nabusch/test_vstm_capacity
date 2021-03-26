@@ -1,4 +1,4 @@
-function PresentPause(window, INFO, t)
+function isQuit = PresentPause(window, INFO, t)
 % Does exactly what the name says.
 
 disp('Pause')
@@ -17,6 +17,7 @@ WaitSecs(0.5);
 P = INFO.P; % just for shorthand
 cx = P.screen.cx;
 cy = P.screen.cy;
+isQuit = 0;
 
 
 Screen(window,'FillRect', P.display.bg);
@@ -32,11 +33,12 @@ my_optimal_fixationpoint(window, cx, cy, P.display.fix_size, P.display.fix_color
 
 Screen('Flip', window);
 
- RestrictKeysForKbCheck(KbName('space'));
+ RestrictKeysForKbCheck([KbName('space'), P.keys.quitkey]);
 [secs, keyCode, deltaSecs] = KbWait();
  RestrictKeysForKbCheck([]);
 if keyCode(P.keys.quitkey)
-    CloseAndCleanup(P)
+%     CloseAndCleanup(P)
+isQuit = 1;
 end;     
        
 WaitSecs(0.5);

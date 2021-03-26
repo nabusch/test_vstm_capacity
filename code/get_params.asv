@@ -71,10 +71,10 @@ P.paradigm.setsizes = [4 6 8];% 4 6 8];
 P.paradigm.breakafter = 20; %break after n trials
 P.paradigm.n_training_trials = 15;% how many training trials?
 P.paradigm.n_trials = 40; % n trials per set size
-P.paradigm.jitter_colors = 0;
+P.paradigm.jitter_colors = 1;
 
 P.paradigm.show_stimuli = 1; % Set to zero to skip stimulus presentation for testing.
-P.paradigm.get_response = 1; % Set to zero to skip response and simulate result. 
+P.paradigm.get_response = 0; % Set to zero to skip response and simulate result. 
 
 
 %% ------------------------------------------------------------------------
@@ -89,18 +89,12 @@ P.timing.dur_delay  = 0.800;
 %  Test colors
 %  ------------------------------------------------------------------------
 % lab color space parameters
-
-% Brady 2016.
-% P.colors.lightness = 54;
+P.colors.lightness = 54;
 % P.colors.a         = 18;
 % P.colors.b         = -8;
-% P.colors.radius    = 59;
-
-% Zhang & Luck 2008.
-P.colors.lightness = 70;
-P.colors.a         = 20;
-P.colors.b         = 38;
-P.colors.radius    = 60;
+P.colors.a         = 0;
+P.colors.b         = 0;
+P.colors.radius    = 70;
 % P.colors.degreeSeparation = 15;
 
 

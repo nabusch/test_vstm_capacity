@@ -16,7 +16,7 @@ for irepeat = 1:P.paradigm.n_trials
         T(itrial).setsize = this_setsize;
         
         rad_step = (2*pi) / this_setsize;
-        rad_jitter = 0.25 * rad_step;
+        rad_jitter = 0.15 * rad_step;
         
         
         % Get a random location on the color wheel as the "starting color" for
@@ -32,41 +32,35 @@ for irepeat = 1:P.paradigm.n_trials
             % color becaomes the other target's foil.
             if P.paradigm.jitter_colors == 1
                 T(itrial).jitter = 2*rad_jitter .* rand - rad_jitter;
-                thetas(i) = wrapToPi((rad_start + ((i-1)*rad_step)+T(itrial).jitter));
             else
                 T(itrial).jitter = 0;
-                thetas(i) = wrapToPi(rad_start + ((i-1)*rad_step));
             end
-            %             x = round(P.colors.a + P.colors.radius * sin(thetas(i)));
-            %             y = round(P.colors.b + P.colors.radius * cos(thetas(i)));
-            %
-            %
-            %             T(itrial).colors(i,:) = lab2rgb([P.colors.lightness, x, y],'OutputType','uint8');
-            
+            thetas(i) = wrapToPi((rad_start + ((i-1)*rad_step)+T(itrial).jitter));            
             
             T(itrial).colors(i,:) = theta2rgb(thetas(i), P.colors.a, ...
                 P.colors.b, P.colors.radius, P.colors.lightness);
         end
         
-        rand_inds = randperm(this_setsize);
         
         % Randomize the order of colors across item positions, so that the
         % progression of colors across neighboring items is not always the same.
+        rand_inds = randperm(this_setsize);
         T(itrial).colors = T(itrial).colors(rand_inds,:);
         T(itrial).thetas = thetas(rand_inds);
+        
         
         % Determine position of the to-be-tested item.
         T(itrial).itest = randi(this_setsize);
         
+        
         % Get the color of the foil corresponding to the to-be-tested item.
         % We want this color to be 180 degrees different.
         foil_theta = wrapToPi( ...
-            T(itrial).thetas(T(itrial).itest) + pi);
-        %         x = round(P.colors.a + P.colors.radius * sin(foil_theta));
-        %         y = round(P.colors.b + P.colors.radius * cos(foil_theta));
+            T(itrial).thetas(T(itrial).itest) + pi); 
         
         T(itrial).foil_color = theta2rgb(foil_theta, P.colors.a, ...
             P.colors.b, P.colors.radius, P.colors.lightness);
+        
         
         % Does the probe stimulus display the foil in the top or in the
         % bottom position?
