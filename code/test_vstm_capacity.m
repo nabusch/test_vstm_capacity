@@ -2,7 +2,6 @@
 Screen('CloseAll');
 addpath('./functions');
 
-
 %% ----------------------------------------------------------------
 % Unify KbNames, normalize color range, Assert openGL
 %--------------------------------------------------------------------------
@@ -65,7 +64,7 @@ end
 
 [win, winrect] = PsychImaging('OpenWindow', ...
     INFO.P.screen.screen_num, INFO.P.display.bg);
-Screen('Preference', 'TextRenderer', 1);
+Screen('Preference', 'TextRenderer', 0);
 Screen('Preference', 'TextAntiAliasing', 2);
 INFO.P.screen.ifi = 1.0 / Screen('NominalFramerate', win);
 
@@ -132,6 +131,7 @@ for trial_idx = 1:length(INFO.T)
     if INFO.P.paradigm.show_stimuli
         INFO = one_trial(INFO, win, trial_idx);
     end
+    
     
     % --------------------------------------------------------------------
     % Get response if desired.

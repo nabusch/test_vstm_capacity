@@ -2,7 +2,7 @@ function P = get_params()
 
 %% Set the computer-specific parameters.
 switch computername
-    case {'x1yoga', 'busch02', 'busch01', 'lbusch01', 'wanjas-yoga-2-pro'}
+    case {'x1yoga', 'busch02', 'busch01', 'lbusch01', 'wanjas-yoga-2-pro', 'franzis-x1'}
         
         thescreen = max(Screen('Screens'));
         myres = Screen('Resolution', thescreen);

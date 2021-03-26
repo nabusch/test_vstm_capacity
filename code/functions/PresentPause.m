@@ -23,10 +23,10 @@ isQuit = 0;
 Screen(window,'FillRect', P.display.bg);
 pausetext = ['Press spacebar to start trial ' num2str(t) ' of ' num2str(length(INFO.T))];
 Screen(window,'TextSize',24);
-tw = RectWidth(Screen('TextBounds', window, pausetext));
-th = RectHeight(Screen('TextBounds', window, pausetext));
+% tw = RectWidth(Screen('TextBounds', window, pausetext));
+% th = RectHeight(Screen('TextBounds', window, pausetext));
 
-Screen(window,'DrawText', pausetext, cx-0.5*tw, cy-2*th, P.display.fix_color);
+Screen(window,'DrawText', pausetext, cx, cy-0.5*cy, P.display.fix_color);
 % my_fixationpoint(window, P.CenterX, P.CenterY, P.FixSize, P.FixColor)
 my_optimal_fixationpoint(window, cx, cy, P.display.fix_size, P.display.fix_color, ...
     P.display.bg, P.screen.pixperdeg)
