@@ -22,3 +22,23 @@ T.correct = correct;
 T.rt      = secs - T.t_probe_on;
 
 INFO.T(trial_idx) = T;
+
+
+% --------------------------------------------------------
+% Present the feedback.
+% --------------------------------------------------------
+if P.paradigm.do_feedback
+    switch T.correct
+        case 1
+            my_optimal_fixationpoint(win, P.screen.cx, P.screen.cy, ...
+                P.display.fix_size, [0 255 0], P.display.bg, P.screen.pixperdeg)
+            
+        case 0
+            my_optimal_fixationpoint(win, P.screen.cx, P.screen.cy, ...
+                P.display.fix_size, [255 0 0], P.display.bg, P.screen.pixperdeg)
+    end
+end
+
+Screen('Flip', win);
+WaitSecs(P.paradigm.feedback_duration);
+
