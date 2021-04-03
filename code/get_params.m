@@ -65,7 +65,8 @@ P.screen.ifi_buffer = 0.5;
 %% ------------------------------------------------------------------------
 %  Paradigm
 %  ------------------------------------------------------------------------
-P.paradigm.doFeedback = 1;
+P.paradigm.do_feedback = 1;
+P.paradigm.feedback_duration = 0.200;
 P.paradigm.Feedbackthick = 0.1; %degree
 P.paradigm.setsizes = [4 6 8];% 4 6 8];
 P.paradigm.breakafter = 20; %break after n trials
