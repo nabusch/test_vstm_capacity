@@ -3,7 +3,7 @@ clear
 
 % logs = dir('./logs/*.mat')
 dir_logs = './logs/';
-log_inds = [4 5 6 7 8];
+log_inds = [4 5 6 7 8, 101, 102, 103];
 
 %%
 figure('color', 'w');
